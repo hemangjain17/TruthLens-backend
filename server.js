@@ -9,7 +9,8 @@ import ffmpeg from "fluent-ffmpeg";
 import { exec } from "child_process";
 import axios from "axios";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
+import dotenv from "dotenv";
+dotenv.config();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // import OpenAI from "openai";
 
@@ -20,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ----------------- MongoDB Connection -----------------
 const client = new MongoClient(
-  "mongodb+srv://Ishan:testingbingo@bingo.bhqrq.mongodb.net/?retryWrites=true&w=majority&appName=Bingo"
+  process.env.MONGODB_URI
 );
 await client.connect();
 const db = client.db("test");
